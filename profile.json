@@ -1,0 +1,16 @@
+{
+  "user": "YOUR USER",
+  "url": "https://[URL].snowflakecomputing.com:443",
+  "account": "YOUR ACCOUNT",
+  "private_key": "YOUR PRIVATE KEY - UNENCRYPTED",
+  "port": 443,
+  "host": "[HOST].snowflakecomputing.com",
+  "schema": "PUBLIC",
+  "scheme": "https",
+  "database": "ANONDB",
+  "connect_string": "jdbc:snowflake://[ACCT].snowflakecomputing.com:443",
+  "ssl": "on",
+  "warehouse": "YOUR WAREHOUSE",
+  "role": "YOUR ROLE"
+}
+
