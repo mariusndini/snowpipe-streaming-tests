@@ -43,7 +43,7 @@ The java code base uses the <b>profile.json</b> values in this Github repo to au
   "host": "[HOST].snowflakecomputing.com",
   "schema": "PUBLIC",
   "scheme": "https",
-  "database": "ANONDB",
+  "database": "YOUR DATABASE",
   "connect_string": "jdbc:snowflake://[ACCT].snowflakecomputing.com:443",
   "ssl": "on",
   "warehouse": "YOUR WAREHOUSE",
@@ -86,7 +86,7 @@ for (long stop=System.nanoTime()+java.util.concurrent.TimeUnit.SECONDS.toNanos(3
 Since I load current timestamps in the data set. The following stats take minimum (the first row) and the maximum (last row) current_time for each row to guage how long the load took.
 ```SQL
 select E as RUN, count(*) as ROW_COUNT, timediff('seconds', min(b), max(b)) as LOAD_TIME, (ROW_COUNT/LOAD_TIME)::INTEGER AVERAGE_ROWS_SECOND
-from anondb.public.streamtable
+from streamtable
 group by 1;
 ```
 
