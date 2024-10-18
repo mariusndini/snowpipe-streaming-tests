@@ -166,3 +166,6 @@ GROUP BY event_hour, client_name, snowflake_provided_id;
 Please refer to this documentatino for the <b>official</b> tests and Snowflake Github documentation(https://github.com/snowflakedb/snowflake-ingest-java).
 
 This test was based on the Snowflake provided documentation (https://github.com/snowflakedb/snowflake-ingest-java/blob/master/src/main/java/net/snowflake/ingest/streaming/example/SnowflakeStreamingIngestExample.java). 
+
+### Javadoc
+https://javadoc.io/doc/net.snowflake/snowflake-ingest-sdk/latest/index.html
