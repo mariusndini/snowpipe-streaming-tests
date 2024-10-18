@@ -9,22 +9,29 @@ Java(TM) SE Runtime Environment 18.9 (build 11.0.12+8-LTS-237)
 Java HotSpot(TM) 64-Bit Server VM 18.9 (build 11.0.12+8-LTS-237, mixed mode)
 ```
 
-## Running the Test
-Compiling the java file can be completed as below
+## Running the Test(s)
+Compiling the java file can be completed as below. There are two tests/files to run.
+
+<b>streamcode.java</b> Which will load one row which successfully inserts and another row which failes because of column type mismatch.
+<b>streamcodeLoop.java</b> Which will load rows continously for 1 hour in 100 row increments into Snowflake.
+
+
+<b>Running the compiled jav files can be down as below</b>
 ```shell
 javac -cp "jars/*:" streamcode.java
-```
-
-Running the compiled java can be down as below
-```shell
 java -cp "jars/*:" streamcode
 ```
+
+
+```shell
+javac -cp "jars/*:" streamcodeLoop.java
+java -cp "jars/*:" streamcodeLoop
+```
+
+
 <br><br>
 
 ## Prerequisite
-### Enable Snowpipe Streaming on your Account
-You must hav Snowpipe Streaming on your Snowflake account before attempting any of these tests. You will recieve a <b>400</b> error from Snowflake if you do not.
-<br><br>
 
 ### User Management
 Currently you must authenticate via key/pair and create a private key as described here (https://docs.snowflake.com/en/user-guide/key-pair-auth.html)
@@ -123,6 +130,35 @@ What is important from this test is each individual iteration and not the iterat
 
 
 While this has primarly been a test in throughput and not a test of timing source-to-Snowflake data begins flowing and is queryable in Snowflake almost immedately after the tests began (under 5 seconds). 
+
+<br><br><br>
+
+## Helper SQLs
+
+Create the necessary table to stream data into below: 
+```SQL
+use role streaming_role;
+create warehouse streaming_wh;
+create database streaming;
+
+create or replace table streamtable (A string, B DATETIME, C integer, D String, E integer);
+```
+
+
+History and credit consumption below
+```SQL
+-- META DATA TABLE INFO
+use role accountadmin;
+use warehouse finwh;
+SELECT * FROM SNOWFLAKE.ACCOUNT_USAGE.SNOWPIPE_STREAMING_FILE_MIGRATION_HISTORY;
+
+select * from SNOWFLAKE.ACCOUNT_USAGE.SNOWPIPE_STREAMING_CLIENT_HISTORY;
+
+-- CREDIT CONSUMPTION
+SELECT COUNT(DISTINCT event_timestamp) AS client_seconds, date_trunc('hour',event_timestamp) AS event_hour, client_seconds*0.000002777777778 as credits, client_name, snowflake_provided_id
+FROM SNOWFLAKE.ACCOUNT_USAGE.SNOWPIPE_STREAMING_CLIENT_HISTORY
+GROUP BY event_hour, client_name, snowflake_provided_id;
+```
 
 <br><br><br>
 

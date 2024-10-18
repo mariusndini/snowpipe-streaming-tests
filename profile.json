@@ -1,16 +1,16 @@
 {
-  "user": "YOUR USER",
-  "url": "https://[URL].snowflakecomputing.com:443",
-  "account": "YOUR ACCOUNT",
-  "private_key": "YOUR PRIVATE KEY - UNENCRYPTED",
+  "user": "YOUR_USER",
+  "url": "https://[ACCT].region.snowflakecomputing.com:443",
+  "account": "opa12479",
+  "private_key": "MI==",
   "port": 443,
-  "host": "[HOST].snowflakecomputing.com",
+  "host": "[ACCT].REGION.snowflakecomputing.com",
   "schema": "PUBLIC",
   "scheme": "https",
-  "database": "ANONDB",
-  "connect_string": "jdbc:snowflake://[ACCT].snowflakecomputing.com:443",
+  "database": "YOUR_DATABASE",
+  "connect_string": "jdbc:snowflake://[ACCT]].region.cloud.snowflakecomputing.com:443",
   "ssl": "on",
-  "warehouse": "YOUR WAREHOUSE",
-  "role": "YOUR ROLE"
+  "warehouse": "YOUR_WH",
+  "role": "YOUR_ROLE"
 }
 
